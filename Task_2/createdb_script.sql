@@ -79,6 +79,7 @@ CREATE TABLE order_items (
     product_id INT NOT NULL,
     quantity INT NOT NULL,
     price_at_purchase DECIMAL(10, 2) NOT NULL,
+    row_total DECIMAL(10, 2) GENERATED ALWAYS AS (quantity * price_at_purchase) STORED,
     CONSTRAINT chk_qty_pos CHECK (quantity > 0),
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id)
