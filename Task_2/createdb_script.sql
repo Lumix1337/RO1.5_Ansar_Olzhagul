@@ -104,3 +104,57 @@ CREATE TABLE IF NOT EXISTS reviews (
     CONSTRAINT fk_product_rev FOREIGN KEY (product_id) REFERENCES products(product_id),
     CONSTRAINT fk_user_rev FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+INSERT INTO categories (category_name, description)
+VALUES 
+    ('Electronics', 'Gadgets and devices'),
+    ('Clothing', 'Fashion and apparel')
+ON CONFLICT (category_name) DO NOTHING;
+
+INSERT INTO suppliers (supplier_name, contact_name, email, phone_number, address)
+VALUES 
+    ('TechCorp', 'John Doe', 'sales@techcorp.com', '+123456789', '123 Silicon Valley'),
+    ('FashionHub', 'Jane Smith', 'info@fashionhub.com', '+987654321', '456 Fashion Ave')
+ON CONFLICT (email) DO NOTHING;
+
+INSERT INTO users (username, email, password, phone_number, gender)
+VALUES 
+    ('alice_w', 'alice@example.com', 'hash_123', '555-0101', 'F'),
+    ('bob_m', 'bob@example.com', 'hash_456', '555-0102', 'M')
+ON CONFLICT (username) DO NOTHING;
+
+INSERT INTO addresses (user_id, city, street_address, postal_code, is_default)
+VALUES 
+    (1, 'New York', '101 Broadway St', '10001', TRUE),
+    (2, 'Los Angeles', '202 Sunset Blvd', '90001', TRUE)
+ON CONFLICT DO NOTHING;
+
+INSERT INTO products (category_id, supplier_id, name, description, price, stock_quantity)
+VALUES 
+    (1, 1, 'Smartphone X', 'Latest model', 899.99, 50),
+    (2, 2, 'Cotton T-Shirt', 'Organic cotton', 19.99, 200)
+ON CONFLICT DO NOTHING;
+
+INSERT INTO orders (user_id, address_id, order_date, total_amount, status)
+VALUES 
+    (1, 1, '2026-03-15 14:00:00', 899.99, 'Pending'),
+    (2, 2, '2026-03-16 10:30:00', 19.99, 'Processing')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO order_items (order_id, product_id, quantity, price_at_purchase)
+VALUES 
+    (1, 1, 1, 899.99),
+    (2, 2, 1, 19.99)
+ON CONFLICT DO NOTHING;
+
+INSERT INTO payment_transactions (order_id, payment_method, amount, status)
+VALUES 
+    (1, 'Credit Card', 899.99, 'Completed'),
+    (2, 'PayPal', 19.99, 'Pending')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO reviews (product_id, user_id, rating, comment)
+VALUES 
+    (1, 1, 5, 'Excellent device!'),
+    (2, 2, 4, 'Very comfortable.')
+ON CONFLICT DO NOTHING;
