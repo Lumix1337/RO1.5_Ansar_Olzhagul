@@ -1,6 +1,6 @@
 -- Database and Schema Setup
-
-CREATE TABLE users (
+CREATE SCHEMA IF NOT EXISTS nexo_retail_db;
+CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -11,7 +11,7 @@ CREATE TABLE users (
     CONSTRAINT chk_gender CHECK (gender IN ('M', 'F', 'O'))
 );
 
-CREATE TABLE addresses (
+CREATE TABLE IF NOT EXISTS addresses (
     address_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     city VARCHAR(100) NOT NULL,
@@ -21,13 +21,13 @@ CREATE TABLE addresses (
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
     category_id SERIAL PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL UNIQUE,
     description TEXT
 );
 
-CREATE TABLE suppliers (
+CREATE TABLE IF NOT EXISTS suppliers (
     supplier_id SERIAL PRIMARY KEY,
     supplier_name VARCHAR(100) NOT NULL,
     contact_name VARCHAR(100),
@@ -36,7 +36,7 @@ CREATE TABLE suppliers (
     address TEXT
 );
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
     product_id SERIAL PRIMARY KEY,
     category_id INT NOT NULL,
     supplier_id INT NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE products (
     CONSTRAINT fk_supplier FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
 );
 
-CREATE TABLE product_images (
+CREATE TABLE IF NOT EXISTS product_images (
     image_id SERIAL PRIMARY KEY,
     product_id INT NOT NULL,
     image_url TEXT NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE product_images (
     CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
 
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
     order_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     address_id INT NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE orders (
     CONSTRAINT fk_address_order FOREIGN KEY (address_id) REFERENCES addresses(address_id)
 );
 
-CREATE TABLE order_items (
+CREATE TABLE IF NOT EXISTS order_items (
     order_item_id SERIAL PRIMARY KEY,
     order_id INT NOT NULL,
     product_id INT NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE order_items (
     CONSTRAINT fk_product_item FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-CREATE TABLE payment_transactions (
+CREATE TABLE IF NOT EXISTS payment_transactions (
     transaction_id SERIAL PRIMARY KEY,
     order_id INT NOT NULL,
     payment_method VARCHAR(50) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE payment_transactions (
     CONSTRAINT fk_order_trans FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 
-CREATE TABLE reviews (
+CREATE TABLE IF NOT EXISTS reviews (
     review_id SERIAL PRIMARY KEY,
     product_id INT NOT NULL,
     user_id INT NOT NULL,
