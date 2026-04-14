@@ -1,6 +1,6 @@
 -- Database and Schema Setup
 CREATE SCHEMA IF NOT EXISTS nexo_retail_db;
-SET search_path TO nexo_retail_db;
+SET search_path TO nexo_retail_db, public;
 
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
