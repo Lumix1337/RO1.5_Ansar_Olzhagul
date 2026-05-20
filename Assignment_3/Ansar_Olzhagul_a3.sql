@@ -20,6 +20,52 @@ GRANT nexo_readonly TO nexo_reader_user;
 
 REVOKE UPDATE, DELETE ON ALL TABLES IN SCHEMA nexo_retail_db FROM nexo_readonly;
 
+/*
+Схема          | Имя                                 | Тип                | Права доступа
+---------------+-------------------------------------+--------------------+-------------------------------------
+nexo_retail_db | addresses                           | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | addresses_address_id_seq            | последовательность | 
+nexo_retail_db | categories                          | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | categories_category_id_seq          | последовательность | 
+nexo_retail_db | order_items                         | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | order_items_order_item_id_seq       | последовательность | 
+nexo_retail_db | orders                              | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | orders_order_id_seq                 | последовательность | 
+nexo_retail_db | payment_transactions                | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | payment_transactions_transaction_id_seq| последовательность | 
+nexo_retail_db | product_images                      | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | product_images_image_id_seq         | последовательность | 
+nexo_retail_db | products                            | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | products_product_id_seq             | последовательность | 
+nexo_retail_db | reviews                             | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | reviews_review_id_seq               | последовательность | 
+nexo_retail_db | suppliers                           | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | suppliers_supplier_id_seq           | последовательность | 
+nexo_retail_db | users                               | таблица            | postgres=arwdDxtm/postgres +
+               |                                     |                    | nexo_admin=arwdDxtm/postgres  +
+               |                                     |                    | nexo_readonly=r/postgres
+nexo_retail_db | users_user_id_seq                   | последовательность | 
+(20 строк)
+*/
+
 SET search_path TO nexo_retail_db, public;
 
 TRUNCATE TABLE 
