@@ -12,10 +12,10 @@ GRANT USAGE ON SCHEMA nexo_retail_db TO nexo_readonly;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA nexo_retail_db TO nexo_admin;
 GRANT SELECT ON ALL TABLES IN SCHEMA nexo_retail_db TO nexo_readonly;
 
-CREATE USER nexo_admin_user WITH PASSWORD 'admin_pass_123';
+CREATE USER nexo_admin_user WITH PASSWORD 'admin';
 GRANT nexo_admin TO nexo_admin_user;
 
-CREATE USER nexo_reader_user WITH PASSWORD 'reader_pass_123';
+CREATE USER nexo_reader_user WITH PASSWORD 'reader';
 GRANT nexo_readonly TO nexo_reader_user;
 
 REVOKE UPDATE, DELETE ON ALL TABLES IN SCHEMA nexo_retail_db FROM nexo_readonly;
